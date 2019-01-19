@@ -1,4 +1,6 @@
-package by.epam.javatraining.BuslauAliaksei.tasks.maintask.Controller;
+package by.epam.javatraining.aliakseibuslau.tasks.maintask.Controller;
+
+import by.epam.javatraining.aliakseibuslau.tasks.maintask.model.InputData;
 
 public class Logic {
 

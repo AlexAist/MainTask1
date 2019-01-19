@@ -1,4 +1,4 @@
-package by.epam.javatraining.BuslauAliaksei.tasks.maintask.Controller;
+package by.epam.javatraining.aliakseibuslau.tasks.maintask.model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,7 +14,7 @@ public class InputData {
 
     public static int[] readFromFile(){
         int[] array = null;
-        try (BufferedReader in = new BufferedReader(new FileReader("D://chisla.txt")))
+        try (BufferedReader in = new BufferedReader(new FileReader("D://nums.txt")))
         {
             array = in.lines().mapToInt(Integer::parseInt).toArray();
         }

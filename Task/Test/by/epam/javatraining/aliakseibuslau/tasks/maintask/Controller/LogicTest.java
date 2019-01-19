@@ -1,4 +1,4 @@
-package by.epam.javatraining.BuslauAliaksei.tasks.maintask.Controller;
+package by.epam.javatraining.aliakseibuslau.tasks.maintask.Controller;
 
 import org.junit.jupiter.api.Test;
 
