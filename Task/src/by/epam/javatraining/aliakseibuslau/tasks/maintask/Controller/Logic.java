@@ -4,23 +4,7 @@ import by.epam.javatraining.aliakseibuslau.tasks.maintask.model.InputData;
 
 public class Logic {
 
-    public static int[] randomGenerateAr(int n) {
-        int[] array = new int[n];
-        for (int i = 0; i < n; i++) {
-            array[i] = InputData.randomGen();
-        }
-        return array;
-    }
-
-    public static int searchMin(int[] array) {
-        return searchBy(array, false);
-    }
-
-    public static int searchMax(int[] array) {
-        return searchBy(array, true);
-    }
-
-    private static int searchBy(int[] array, boolean max) {
+    public static int searchMaxMin(int[] array, boolean max) {
         int index = 0;
 
         if (max) {
@@ -116,10 +100,10 @@ public class Logic {
     public static int[] quickSort(int[] array) {
         int startIndex = 0;
         int endIndex = array.length - 1;
-        return doSort(array, startIndex, endIndex);
+        return doQuickSort(array, startIndex, endIndex);
     }
 
-    private static int[] doSort(int[] array, int start, int end) {
+    private static int[] doQuickSort(int[] array, int start, int end) {
         if (start >= end) {
             return array;
         }
@@ -142,12 +126,12 @@ public class Logic {
                     cur = i;
             }
         }
-        doSort(array,start, cur);
-        doSort(array,cur+1, end);
+        doQuickSort(array,start, cur);
+        doQuickSort(array,cur+1, end);
         return array;
     }
 
-    public static int[] insertsort(int[] sourceArray) {
+    public static int[] insertSort(int[] sourceArray) {
         int[] destinationArray = new int[sourceArray.length];
         int destinationSize = 0;
         for (int n = 0; n < sourceArray.length; n++) {

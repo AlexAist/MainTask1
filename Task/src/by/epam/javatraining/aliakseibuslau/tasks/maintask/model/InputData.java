@@ -7,14 +7,25 @@ import java.util.Random;
 
 public class InputData {
 
+    private static String path = "D://nums.txt";
+    private static int RAND_NUM = 30;
+
     public static int randomGen(){
         Random rand = new Random();
-        return rand.nextInt(30);
+        return rand.nextInt(RAND_NUM);
+    }
+
+    public static int[] randomGenerateAr(int n) {
+        int[] array = new int[n];
+        for (int i = 0; i < n; i++) {
+            array[i] = randomGen();
+        }
+        return array;
     }
 
     public static int[] readFromFile(){
         int[] array = null;
-        try (BufferedReader in = new BufferedReader(new FileReader("D://nums.txt")))
+        try (BufferedReader in = new BufferedReader(new FileReader(path)))
         {
             array = in.lines().mapToInt(Integer::parseInt).toArray();
         }

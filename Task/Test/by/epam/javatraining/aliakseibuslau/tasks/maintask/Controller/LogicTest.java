@@ -9,31 +9,31 @@ class LogicTest {
     @Test
     void findMin1(){
         int[] array = {4, 5, 1, 6, 4};
-        assertEquals(1, Logic.searchMin(array));
+        assertEquals(1, Logic.searchMaxMin(array, false));
     }
 
     @Test
     void findMin2(){
         int[] array = {4};
-        assertEquals(4, Logic.searchMin(array));
+        assertEquals(4, Logic.searchMaxMin(array, false));
     }
 
     @Test
     void findMin3(){
         int[] array = {4, 5, 6, 4};
-        assertEquals(4, Logic.searchMin(array));
+        assertEquals(4, Logic.searchMaxMin(array, false));
     }
 
     @Test
     void findMax(){
         int[] array = {4, 5, 6, 4};
-        assertEquals(6, Logic.searchMax(array));
+        assertEquals(6, Logic.searchMaxMin(array, true));
     }
 
     @Test
     void findMax1(){
         int[] array = {4, 5, 23, 3, 6, 4};
-        assertEquals(23, Logic.searchMax(array));
+        assertEquals(23, Logic.searchMaxMin(array, true));
     }
 
     @Test
@@ -102,6 +102,6 @@ class LogicTest {
     void insertSortTest(){
         int[] array = {2, 4, 1, 6, 25, 2 ,6};
         int[] resArray = {1, 2, 2, 4, 6, 6, 25};
-        assertArrayEquals(resArray, Logic.insertsort(array));
+        assertArrayEquals(resArray, Logic.insertSort(array));
     }
 }
