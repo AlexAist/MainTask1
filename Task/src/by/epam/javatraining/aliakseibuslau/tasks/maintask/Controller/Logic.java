@@ -1,10 +1,30 @@
 package by.epam.javatraining.aliakseibuslau.tasks.maintask.Controller;
 
+import by.epam.javatraining.aliakseibuslau.tasks.maintask.model.Exception.NullArrayEx;
+import by.epam.javatraining.aliakseibuslau.tasks.maintask.model.Exception.NullLengthArrEx;
 import by.epam.javatraining.aliakseibuslau.tasks.maintask.model.InputData;
+import org.apache.log4j.Logger;
 
 public class Logic {
 
-    public static int searchMaxMin(int[] array, boolean max) {
+    private static final Logger log = Logger.getLogger(Logic.class);
+
+    private static void arrayForExceptionCheck(int[] array) throws NullArrayEx, NullLengthArrEx {
+        if (array == null) {
+            log.error("Array is not defined exception");
+            throw new NullArrayEx();
+        }
+        else if (array.length == 0) {
+            log.error("Array is empty exception");
+            throw new NullLengthArrEx();
+        }
+        else{
+            log.error("Undefined exception");
+        }
+    }
+
+    public static int searchMaxMin(int[] array, boolean max) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         int index = 0;
 
         if (max) {
@@ -23,7 +43,8 @@ public class Logic {
         return array[index];
     }
 
-    public static double avAr(int[] array) {
+    static double avAr(int[] array) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         double sum = 0;
         for (int i1 : array) {
             sum += i1;
@@ -32,7 +53,8 @@ public class Logic {
         return sum;
     }
 
-    public static double avGeom(int[] array) {
+    static double avGeom(int[] array) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         double mul = array[0];
         for (int i = 1; i < array.length; i++) {
             mul *=(double) array[i];
@@ -41,7 +63,8 @@ public class Logic {
         return mul;
     }
 
-    public static boolean incSeq(int[] array) {
+    static boolean incSeq(int[] array) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         int count = 0;
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] < array[i + 1]) {
@@ -51,7 +74,8 @@ public class Logic {
         return count == array.length - 1;
     }
 
-    public static int localMin(int[] array) {
+    static int localMin(int[] array) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         for (int i = 1; i < array.length - 1; i++) {
             if (array[i] < array[i + 1] && array[i] < array[i - 1]) {
                 return i;
@@ -60,7 +84,8 @@ public class Logic {
         return -1;
     }
 
-    public static int seqSearch(int[] array, int num) {
+    static int seqSearch(int[] array, int num) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         for (int i : array) {
             if (i == num) {
                 return i;
@@ -69,7 +94,8 @@ public class Logic {
         return -1;
     }
 
-    public static int binarySearch(int[] array, int item) {
+    static int binarySearch(int[] array, int item) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         int last = array.length - 1;
         int first = 0;
         int position;
@@ -89,7 +115,8 @@ public class Logic {
         }
     }
 
-    public static int[] revArray(int[] array){
+    static int[] revArray(int[] array)throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         int NUM_FOR_REV = -1;
         for (int i = 0; i < array.length; i++) {
             array[i] *= NUM_FOR_REV;
@@ -97,13 +124,15 @@ public class Logic {
         return array;
     }
 
-    public static int[] quickSort(int[] array) {
+    static int[] quickSort(int[] array) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         int startIndex = 0;
         int endIndex = array.length - 1;
         return doQuickSort(array, startIndex, endIndex);
     }
 
-    private static int[] doQuickSort(int[] array, int start, int end) {
+    private static int[] doQuickSort(int[] array, int start, int end) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(array);
         if (start >= end) {
             return array;
         }
@@ -131,21 +160,21 @@ public class Logic {
         return array;
     }
 
-    public static int[] insertSort(int[] sourceArray) {
+    static int[] insertSort(int[] sourceArray) throws NullArrayEx, NullLengthArrEx {
+        arrayForExceptionCheck(sourceArray);
         int[] destinationArray = new int[sourceArray.length];
         int destinationSize = 0;
-        for (int n = 0; n < sourceArray.length; n++) {
+        for (int i : sourceArray) {
             int insertIndex = 0;
             if (destinationSize > 0) {
                 while (insertIndex < destinationSize
-                        && destinationArray[insertIndex] < sourceArray[n]) {
+                        && destinationArray[insertIndex] < i) {
                     insertIndex++;
                 }
             }
-            for (int m = destinationSize - 1; m >= insertIndex; m--) {
-                destinationArray[m + 1] = destinationArray[m];
-            }
-            destinationArray[insertIndex] = sourceArray[n];
+            if (destinationSize - insertIndex >= 0)
+                System.arraycopy(destinationArray, insertIndex, destinationArray, insertIndex + 1, destinationSize - insertIndex);
+            destinationArray[insertIndex] = i;
             destinationSize++;
         }
         return destinationArray;
